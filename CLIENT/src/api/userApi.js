@@ -16,8 +16,8 @@ export const fetchUser = async ({ queryKey }) => {
 
 export const fetchCurrentUser = async () => {
   try {
-    const { data } = await API.get("/users/me");
-    return data;
+    const response = await API.get("/users/me");
+    return response?.data;
   } catch (error) {
     return null;
   }

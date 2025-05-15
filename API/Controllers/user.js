@@ -48,6 +48,7 @@ exports.getLoggedInUser = asyncHandler(async (req, res) => {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ loggedIn: false });
   const user = await getUserFromToken(token);
+  if (user === "guest") return res.status(401).json({ loggedIn: false });
 
   if (!user) return res.status(404).json({ error: "User not found" });
 
